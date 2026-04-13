@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Tech Reference — Ayush Kumar</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:   #0CFCA8;
+      --sky:      #38BDF8;
+      --lavender: #A788FA;
+      --amber:    #FFB347;
+      --coral:    #FF4B6B;
+      --bg:       #0A0A0A;
+      --card:     #111111;
+      --border:   #2A2825;
+      --text:     #F5F0E8;
+      --muted:    #888580;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #111;
+      font-size: 11pt;
+      line-height: 1.7;
+      padding: 0;
+    }
+
+    /* ── Cover Page ── */
+    .cover {
+      background: #0A0A0A;
+      color: #F5F0E8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 64px;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(12,252,168,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(12,252,168,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .cover-inner { position: relative; z-index: 1; }
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(12,252,168,0.35);
+      background: rgba(12,252,168,0.06);
+      color: #0CFCA8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .cover-badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #0CFCA8;
+    }
+    .cover h1 {
+      font-size: 42pt;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .cover h1 span { color: #0CFCA8; }
+    .cover-sub {
+      font-size: 14pt;
+      color: #888580;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+    .cover-divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, #0CFCA8, #38BDF8);
+      border-radius: 2px;
+      margin-bottom: 40px;
+    }
+    .cover-desc {
+      font-size: 12pt;
+      color: #C4BEB4;
+      max-width: 540px;
+      line-height: 1.8;
+      margin-bottom: 56px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .cover-meta-item { }
+    .cover-meta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .cover-meta-value {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #F5F0E8;
+    }
+
+    /* ── Content pages ── */
+    .page {
+      padding: 48px 56px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Section title */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #0CFCA8;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: 22pt;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 6px;
+    }
+    .section-desc {
+      font-size: 10.5pt;
+      color: #666;
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, #0CFCA8, transparent);
+      margin-bottom: 32px;
+    }
+
+    /* Card */
+    .card {
+      border: 1px solid #E8E8E8;
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
+      page-break-inside: avoid;
+      position: relative;
+    }
+    .card-accent-bar {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 3px;
+      border-radius: 12px 0 0 12px;
+    }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    .card-name {
+      font-size: 12.5pt;
+      font-weight: 700;
+      color: #111;
+    }
+    .card-mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .card-def {
+      font-size: 10pt;
+      color: #444;
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+    .card-why-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888;
+      margin-bottom: 4px;
+    }
+    .card-why {
+      font-size: 10pt;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    /* Tag chips */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      padding: 2px 9px;
+      border-radius: 5px;
+      border: 1px solid #E0E0E0;
+      color: #555;
+    }
+
+    /* Two-col grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    /* Interview Q&A box */
+    .qa-box {
+      background: #F7F9FF;
+      border: 1px solid #DDE5FF;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+    }
+    .qa-q {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #3B4ABF;
+      margin-bottom: 6px;
+    }
+    .qa-q::before { content: 'Q: '; }
+    .qa-a {
+      font-size: 10pt;
+      color: #333;
+      line-height: 1.7;
+    }
+    .qa-a::before { content: 'A: '; font-weight: 600; color: #555; }
+
+    /* Pattern box */
+    .pattern-box {
+      background: #0A0A0A;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+    }
+    .pattern-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: #0CFCA8;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .pattern-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      color: #C4BEB4;
+      line-height: 1.9;
+      white-space: pre;
+    }
+    .code-accent   { color: #0CFCA8; }
+    .code-sky      { color: #38BDF8; }
+    .code-lavender { color: #A788FA; }
+    .code-amber    { color: #FFB347; }
+    .code-coral    { color: #FF4B6B; }
+    .code-muted    { color: #555; font-style: italic; }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      gap: 0;
+      border: 1px solid #E8E8E8;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .stat-item {
+      flex: 1;
+      padding: 16px;
+      text-align: center;
+      border-right: 1px solid #E8E8E8;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-val {
+      font-size: 18pt;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .stat-lbl {
+      font-size: 8pt;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 2px;
+    }
+
+    /* Page break helper */
+    .break { page-break-before: always; }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      font-size: 10pt;
+    }
+    th {
+      background: #F4F4F4;
+      font-weight: 700;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid #E0E0E0;
+      font-size: 9pt;
+    }
+    td {
+      padding: 10px 14px;
+      border: 1px solid #E8E8E8;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    tr:nth-child(even) td { background: #FAFAFA; }
+
+    /* Callout */
+    .callout {
+      border-left: 3px solid #0CFCA8;
+      background: #F0FFF8;
+      padding: 14px 18px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 20px;
+      font-size: 10pt;
+      color: #333;
+      line-height: 1.7;
+    }
+    .callout strong { color: #07A870; }
+
+    /* Footer on each printed page */
+    @media print {
+      @page {
+        size: A4;
+        margin: 16mm 14mm;
+      }
+      .cover { min-height: 100vh; }
+      body { font-size: 10pt; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COVER PAGE
+════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-badge">
+      <div class="cover-badge-dot"></div>
+      Technical Reference Document
+    </div>
+
+    <h1>Portfolio Tech<br /><span>Reference Guide</span></h1>
+    <div class="cover-sub">Ayush Kumar — Full Stack AI Engineer</div>
+    <div class="cover-divider"></div>
+
+    <p class="cover-desc">
+      A complete reference for every library, pattern, and architectural decision
+      used in building this portfolio — including definitions, why each was chosen,
+      and interview-ready answers. Built for recruiter conversations, technical
+      interviews, and peer reviews.
+    </p>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Prepared by</div>
+        <div class="cover-meta-value">Ayush Kumar</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Role</div>
+        <div class="cover-meta-value">Full Stack AI Engineer</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Tech Stack</div>
+        <div class="cover-meta-value">React + Vite + GSAP + Framer Motion</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Contact</div>
+        <div class="cover-meta-value">ayushshivoy06@gmail.com</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Last Updated</div>
+        <div class="cover-meta-value">April 7, 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 1 — CORE FRAMEWORK
+════════════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="section-label">Section 01</div>
+  <div class="section-title">Core Framework</div>
+  <p class="section-desc">The foundation every other library sits on top of.</p>
+  <div class="section-divider"></div>
+
+  <!-- React -->
+  <div class="card">
+    <div class="card-accent-bar" style="background:#61DAFB;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">React 18</div>
+        <span class="card-mono" style="background:#EBF8FF;color:#0369A1;">UI Library</span>
+      </div>
+      <p class="card-def">
+        <strong>Definition:</strong> React is a JavaScript library for building user interfaces using a component-based architecture. It uses a virtual DOM to efficiently update only the parts of the real DOM that changed, making UIs fast and predictable.
+      </p>
+      <div class="card-why-label">Why I Used It</div>
+      <p class="card-why">
+        React is the industry standard for SPAs. Its component model allowed me to build every section (Hero, About, Skills, etc.) as a self-contained, reusable unit. React 18's concurrent features (like <code>useTransition</code>) also make animations smoother by keeping the UI responsive during heavy updates. It's what I use daily in production.
+      </p>
+      <div class="tags">
+        <span class="tag">Component-based</span>
+        <span class="tag">Virtual DOM</span>
+        <span class="tag">JSX</span>
+        <span class="tag">Hooks</span>
+        <span class="tag">SPA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vite -->
+  <div class="card">
+    <div class="card-accent-bar" style="background:#646CFF;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">Vite 5</div>
+        <span class="card-mono" style="background:#F0EEFF;color:#5B21B6;">Build Tool</span>
+      </div>
+      <p class="card-def">
+        <strong>Definition:</strong> Vite is a next-generation frontend build tool. It uses native ES Modules in the browser during development (no bundling step needed), making the dev server start almost instantly. For production it uses Rollup for optimized bundling.
+      </p>
+      <div class="card-why-label">Why I Used It</div>
+      <p class="card-why">
+        Compared to Create React App (which uses Webpack), Vite's dev server starts in under 300ms regardless of project size. HMR (Hot Module Replacement) is nearly instant — when I change a component, the browser updates in milliseconds without losing state. Production builds are also 30–40% faster. For a portfolio, fast feedback loops during development are critical.
+      </p>
+      <div class="tags">
+        <span class="tag">ESM-based dev server</span>
+        <span class="tag">HMR</span>
+        <span class="tag">Rollup production build</span>
+        <span class="tag">Fast cold start</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tailwind -->
+  <div class="card">
+    <div class="card-accent-bar" style="background:#06B6D4;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">Tailwind CSS 3</div>
+        <span class="card-mono" style="background:#ECFEFF;color:#0E7490;">Styling</span>
+      </div>
+      <p class="card-def">
+        <strong>Definition:</strong> Tailwind is a utility-first CSS framework. Instead of writing custom CSS classes, you compose designs directly in your HTML/JSX using small utility classes like <code>flex</code>, <code>text-lg</code>, <code>rounded-xl</code>. It purges unused CSS in production, resulting in tiny stylesheets.
+      </p>
+      <div class="card-why-label">Why I Used It</div>
+      <p class="card-why">
+        Tailwind eliminates the context-switching between JSX and CSS files. I extended it with custom design tokens for the portfolio's exact color palette (bg-bg-primary, text-accent, etc.), so every component uses consistent values from a single config. The production CSS bundle came out at just ~27KB — extremely lean.
+      </p>
+      <div class="tags">
+        <span class="tag">Utility-first</span>
+        <span class="tag">Design tokens</span>
+        <span class="tag">PurgeCSS</span>
+        <span class="tag">Responsive</span>
+        <span class="tag">Dark theme</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Key Interview Point:</strong> "I chose React + Vite over Next.js intentionally. A portfolio is a purely static single-page app — there's no need for SSR, API routes, or server components. Vite gives me the same DX as Next.js but with a simpler, smaller setup and faster builds."
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 2 — ANIMATION STACK
+════════════════════════════════════════════════════════════ -->
+<div class="page break">
+
+  <div class="section-label">Section 02</div>
+  <div class="section-title">Animation Stack</div>
+  <p class="section-desc">Three libraries working together — each with a specific role. No overlap, no bloat.</p>
+  <div class="section-divider"></div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Library</th>
+        <th>Role</th>
+        <th>When I use it</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GSAP + ScrollTrigger</strong></td>
+        <td>Timeline-based, scroll-driven, performance-critical animations</td>
+        <td>Page load sequence, text reveals, timeline line draw, parallax</td>
+      </tr>
+      <tr>
+        <td><strong>Framer Motion</strong></td>
+        <td>React-aware declarative animations</td>
+        <td>Component mount/unmount, hover/tap states, tab transitions</td>
+      </tr>
+      <tr>
+        <td><strong>Lenis</strong></td>
+        <td>Smooth scrolling engine</td>
+        <td>Always-on — replaces native scroll behavior globally</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- GSAP -->
+  <div class="card">
+    <div class="card-accent-bar" style="background:#88CE02;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">GSAP — GreenSock Animation Platform</div>
+        <span class="card-mono" style="background:#F2FFDB;color:#3D6B00;">Animation Engine</span>
+      </div>
+      <p class="card-def">
+        <strong>Definition:</strong> GSAP is a JavaScript animation library known for its performance, precision, and timeline control. It animates anything — DOM elements, CSS properties, SVG, canvas — at 60fps even on low-end devices. It does not use React's render cycle, which is exactly what makes it fast.
+      </p>
+      <div class="card-why-label">Why I Used It</div>
+      <p class="card-why">
+        Framer Motion is convenient but operates inside React's render cycle. For heavy, chained animations — like the Hero page load sequence (badge → name char-by-char → tagline → CTA buttons) or the Experience timeline line that draws as you scroll — GSAP's <strong>timeline API</strong> gives precise frame-level control that React state simply cannot match.
+      </p>
+      <div class="tags">
+        <span class="tag">60fps</span><span class="tag">Timeline API</span><span class="tag">Staggers</span>
+        <span class="tag">Scrub animations</span><span class="tag">FLIP</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ScrollTrigger -->
+  <div class="card">
+    <div class="card-accent-bar" style="background:#0CFCA8;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">GSAP ScrollTrigger Plugin</div>
+        <span class="card-mono" style="background:#F0FFF8;color:#047857;">GSAP Plugin</span>
+      </div>
+      <p class="card-def">
+        <strong>Definition:</strong> ScrollTrigger is a GSAP plugin that ties any animation to the scroll position. You can trigger, pin, scrub, or reverse animations based on when an element enters or exits the viewport.
+      </p>
+      <div class="card-why-label">Why I Used It</div>
+      <p class="card-why">
+        Used on every section for scroll-based reveals. The Experience section's vertical line literally "draws" as you scroll down using <code>scrub: 0.5</code> — the animation plays forward/backward in sync with your scroll wheel. This level of control is impossible with pure CSS scroll animations or Framer Motion's <code>whileInView</code>.
+      </p>
+      <div class="tags">
+        <span class="tag">Scroll-driven</span><span class="tag">Scrub</span><span class="tag">Pin</span>
+        <span class="tag">IntersectionObserver replacement</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Framer Motion -->
+  <div class="card">
+    <div class="card-accent-bar" style="background:#A788FA;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">Framer Motion 11</div>
+        <span class="card-mono" style="background:#F5F0FF;color:#6D28D9;">React Animation</span>
+      </div>
+      <p class="card-def">
+        <strong>Definition:</strong> Framer Motion is a production-ready React animation library. It uses a declarative API — you describe what a component should look like and it handles the interpolation. Its killer feature is <code>AnimatePresence</code>, which animates components when they unmount (exit) from the DOM — something CSS transitions cannot do.
+      </p>
+      <div class="card-why-label">Why I Used It</div>
+      <p class="card-why">
+        Used for: Skills tab switching (AnimatePresence handles the old tab fading out before the new one fades in), card hover lifts (<code>whileHover</code>), the Open To Work badge springing in, project card hover effects, and the mobile nav drawer. It integrates naturally with React's component lifecycle unlike GSAP which needs manual cleanup.
+      </p>
+      <div class="tags">
+        <span class="tag">AnimatePresence</span><span class="tag">whileHover</span><span class="tag">whileTap</span>
+        <span class="tag">whileInView</span><span class="tag">layout animations</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lenis -->
+  <div class="card">
+    <div class="card-accent-bar" style="background:#38BDF8;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">Lenis (Smooth Scroll)</div>
+        <span class="card-mono" style="background:#F0FAFF;color:#0369A1;">Scroll Engine</span>
+      </div>
+      <p class="card-def">
+        <strong>Definition:</strong> Lenis is a lightweight smooth scrolling library by Studio Freight. It intercepts native browser scroll events and replaces them with a lerp-based (linear interpolation) smooth movement. The result is the premium "buttery" scroll feel seen on high-end agency sites.
+      </p>
+      <div class="card-why-label">Why I Used It</div>
+      <p class="card-why">
+        Native browser scroll is instant and jerky. CSS <code>scroll-behavior: smooth</code> only affects anchor links. Lenis creates a scroll experience that feels physically weighted — like momentum. It's also wired into GSAP's ticker so ScrollTrigger animations stay perfectly in sync with the smooth scroll position, not the native one.
+      </p>
+      <div class="tags">
+        <span class="tag">Lerp smoothing</span><span class="tag">GSAP sync</span><span class="tag">touch-safe</span>
+        <span class="tag">programmatic scrollTo</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 3 — CUSTOM HOOKS & ARCHITECTURE
+════════════════════════════════════════════════════════════ -->
+<div class="page break">
+
+  <div class="section-label">Section 03</div>
+  <div class="section-title">Custom Hooks</div>
+  <p class="section-desc">Reusable logic extracted into hooks — keeps components clean and DRY.</p>
+  <div class="section-divider"></div>
+
+  <div class="card">
+    <div class="card-accent-bar" style="background:#0CFCA8;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">useGsap.js</div>
+        <span class="card-mono" style="background:#F0FFF8;color:#047857;">Custom Hook</span>
+      </div>
+      <p class="card-def">
+        <strong>What it does:</strong> Creates a GSAP context scoped to a container ref. Any animations defined inside automatically target only that component's DOM, preventing selector collisions. On unmount it calls <code>ctx.revert()</code> to kill all animations and restore original styles — no memory leaks.
+      </p>
+      <div class="card-why-label">Why it matters</div>
+      <p class="card-why">
+        Without scoped contexts, a GSAP selector like <code>".card"</code> would target every element with that class on the page. With <code>gsap.context(fn, containerRef)</code>, it only targets elements inside that specific component. This is the correct pattern for GSAP in React.
+      </p>
+
+      <div style="margin-top:14px;">
+        <div class="pattern-box">
+          <div class="pattern-title">// Usage pattern</div>
+          <div class="pattern-code"><span class="code-sky">const</span> <span class="code-accent">containerRef</span> = <span class="code-lavender">useGsap</span>((ctx) => {
+  gsap.<span class="code-lavender">from</span>(<span class="code-coral">'.card'</span>, { opacity: <span class="code-amber">0</span>, y: <span class="code-amber">30</span>, stagger: <span class="code-amber">0.1</span> })
+}) <span class="code-muted">// cleanup handled automatically on unmount</span>
+
+<span class="code-sky">return</span> &lt;<span class="code-accent">section</span> ref={containerRef}&gt;...&lt;/<span class="code-accent">section</span>&gt;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-accent-bar" style="background:#38BDF8;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">useSmoothScroll.js</div>
+        <span class="card-mono" style="background:#F0FAFF;color:#0369A1;">Custom Hook</span>
+      </div>
+      <p class="card-def">
+        <strong>What it does:</strong> Returns a <code>scrollTo(target)</code> function that uses the global Lenis instance stored at <code>window.__lenis</code>. Falls back to native smooth scroll if Lenis isn't ready yet. Used by Navbar, Footer, and CTA buttons.
+      </p>
+      <div class="card-why-label">Why it matters</div>
+      <p class="card-why">
+        Instead of passing the Lenis instance down through props (prop drilling) or reaching into a Context, any component can call <code>useSmoothScroll()</code> and get a ready-to-use scrollTo. Single source of truth.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-accent-bar" style="background:#A788FA;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-header">
+        <div class="card-name">useTypewriter.js</div>
+        <span class="card-mono" style="background:#F5F0FF;color:#6D28D9;">Custom Hook</span>
+      </div>
+      <p class="card-def">
+        <strong>What it does:</strong> Cycles through an array of strings, typing characters one by one, pausing at full word, then deleting character by character before moving to the next word. Returns the current <code>text</code> string and an <code>isDeleting</code> boolean.
+      </p>
+      <div class="card-why-label">Why it matters</div>
+      <p class="card-why">
+        Powers the rotating title in the Hero badge: "Full Stack AI Engineer → MERN Stack Developer → React Specialist…" This shows recruiters range without cluttering the UI. The hook is pure logic — the component only renders the returned string, keeping concerns separated.
+      </p>
+      <div class="tags">
+        <span class="tag">typeSpeed configurable</span><span class="tag">deleteSpeed configurable</span>
+        <span class="tag">pauseMs configurable</span><span class="tag">infinite loop</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:28px;">Data Architecture</div>
+  <div class="section-title" style="font-size:16pt;">Separation of Data from UI</div>
+  <div class="section-divider"></div>
+
+  <div class="callout">
+    All portfolio content — projects, experience, skills — lives in <code>/src/data/</code> as plain JavaScript objects. Components import this data and render it. To update the portfolio content (e.g. add a new project), you only touch one data file, not the component.
+    <br /><br />
+    <strong>Interview answer:</strong> "This is the data-driven component pattern — the same principle as a CMS. The UI doesn't care what the data is, only its shape. It makes the portfolio maintainable and scalable."
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>File</th><th>Contains</th><th>Used By</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>data/projects.js</code></td><td>3 projects with title, description, tech, links, highlights</td><td>Projects.jsx</td></tr>
+      <tr><td><code>data/experience.js</code></td><td>3 work experiences with role, achievements, tech tags</td><td>Experience.jsx</td></tr>
+      <tr><td><code>data/skills.js</code></td><td>4 skill categories with skill names, levels (%), and proficiency tags</td><td>Skills.jsx</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 4 — COMPONENTS
+════════════════════════════════════════════════════════════ -->
+<div class="page break">
+
+  <div class="section-label">Section 04</div>
+  <div class="section-title">Component Breakdown</div>
+  <p class="section-desc">Every component, what it does, and the specific techniques used inside it.</p>
+  <div class="section-divider"></div>
+
+  <div class="grid-2">
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-accent-bar" style="background:#0CFCA8;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">Navbar.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          Auto-hides on scroll down, reappears on scroll up. Active section highlighting via <code>IntersectionObserver</code>. Mobile hamburger with AnimatePresence drawer. Backdrop blur when not at top.
+        </p>
+        <div class="tags">
+          <span class="tag">IntersectionObserver</span><span class="tag">Framer Motion</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-accent-bar" style="background:#38BDF8;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">Hero.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          GSAP timeline: badge → char-by-char name (perspective rotateX) → tagline → CTA buttons. Two floating orbs animating with GSAP yoyo. Typewriter badge via <code>useTypewriter</code> hook. Right column: circular profile photo (<code>public/photo.jpg</code>) with spinning <code>conic-gradient</code> ring, CSS retouching filters (<code>brightness(1.08) contrast(1.12) saturate(1.15)</code>), floating stat chips animated with Framer Motion yoyo, and pulsing online status dot.
+        </p>
+        <div class="tags">
+          <span class="tag">GSAP Timeline</span><span class="tag">char split</span><span class="tag">Typewriter</span><span class="tag">CSS filters</span><span class="tag">conic-gradient</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-accent-bar" style="background:#A788FA;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">Skills.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          Category tabs with Framer Motion <code>layoutId="tab-bg"</code> spring-animated background highlight on active tab (not an underline — the entire button background morphs). <code>AnimatePresence mode="wait"</code> for tab content fade swap. 3D card tilt on hover via raw JS <code>mousemove</code> tracking + CSS <code>perspective(1000px)</code>. Each skill card shows <code>years</code> and <code>proof</code> metrics with Clock + Layers icons colored per category.
+        </p>
+        <div class="tags">
+          <span class="tag">layoutId</span><span class="tag">AnimatePresence</span><span class="tag">3D tilt</span><span class="tag">years/proof metrics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-accent-bar" style="background:#FFB347;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">Experience.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          Alternating left-right timeline. GSAP scrub animates the vertical line as you scroll. Each card slides in from opposite side. Opposite column shows a styled code window mockup.
+        </p>
+        <div class="tags">
+          <span class="tag">GSAP scrub</span><span class="tag">alternating layout</span><span class="tag">code windows</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-accent-bar" style="background:#FF4B6B;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">Projects.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          3 project cards with color-coded top accent bars and glow borders. Framer Motion <code>whileHover</code> spring lift (<code>y: -6</code>). GSAP stagger reveal on scroll. GitHub icon link on each card; <strong>clicking the card</strong> opens the full <code>ProjectModal</code> documentation overlay — not a separate live demo link.
+        </p>
+        <div class="tags">
+          <span class="tag">whileHover spring</span><span class="tag">GSAP stagger</span><span class="tag">color theming</span><span class="tag">ProjectModal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-accent-bar" style="background:#0CFCA8;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">Contact.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          EmailJS integration for form submission. One-click copy email button with check icon feedback. Social links with hover animations. Availability card.
+        </p>
+        <div class="tags">
+          <span class="tag">EmailJS</span><span class="tag">clipboard API</span><span class="tag">form state</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:16px;">
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-accent-bar" style="background:#FF4B6B;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">ProjectModal.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          Full-screen overlay opened when a project card is clicked. Uses Framer Motion <code>AnimatePresence</code> for entry/exit. Displays project tag, title, subtitle, full description, key facts, tech stack, highlights, and a GitHub link. Scroll-locked while open (<code>overflow:hidden</code> on body). Closes on backdrop click or Escape key.
+        </p>
+        <div class="tags">
+          <span class="tag">AnimatePresence</span><span class="tag">scroll lock</span><span class="tag">backdrop close</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-accent-bar" style="background:#A788FA;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">Testimonials.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          3 testimonials from real colleagues (Tech Lead, Product Manager, Mentor). Each card has a <code>Quote</code> icon, avatar initials, role/company badge, relation tag, and full testimonial text. GSAP ScrollTrigger stagger reveal on scroll. Framer Motion <code>whileHover</code> lift effect. Hardcoded content — no data file.
+        </p>
+        <div class="tags">
+          <span class="tag">GSAP stagger</span><span class="tag">whileHover</span><span class="tag">social proof</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;">
+    <div class="card">
+      <div class="card-accent-bar" style="background:#38BDF8;"></div>
+      <div style="padding-left:10px;">
+        <div class="card-name" style="font-size:11pt;">ParticleBackground.jsx</div>
+        <p class="card-def" style="font-size:9.5pt;margin-top:6px;">
+          <strong>Definition:</strong> A full-viewport HTML5 Canvas element fixed behind all content. Uses <code>requestAnimationFrame</code> for a 60fps animation loop. 55 particles drift across the screen (wrapping at edges). Any two particles within 130px are connected with a line whose opacity fades with distance — creating a "neural network" aesthetic.
+        </p>
+        <div class="card-why-label">Why Canvas, not CSS/SVG?</div>
+        <p class="card-why" style="font-size:9.5pt;">
+          Canvas is the only performant option for 55+ moving objects with dynamic line drawing. CSS animations can't draw lines between moving elements. SVG would create thousands of DOM elements, killing performance. Canvas batches all drawing in a single element, with zero DOM overhead. It also respects <code>prefers-reduced-motion</code> — the animation is disabled for accessibility.
+        </p>
+        <div class="tags">
+          <span class="tag">HTML5 Canvas</span><span class="tag">requestAnimationFrame</span><span class="tag">lerp connections</span>
+          <span class="tag">prefers-reduced-motion</span><span class="tag">edge wrapping</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 5 — RECRUITER FEATURES & PERFORMANCE
+════════════════════════════════════════════════════════════ -->
+<div class="page break">
+
+  <div class="section-label">Section 05</div>
+  <div class="section-title">Recruiter-Focused Features</div>
+  <p class="section-desc">Features added specifically to create a strong first impression and reduce friction for hiring managers.</p>
+  <div class="section-divider"></div>
+
+  <table>
+    <thead>
+      <tr><th>Feature</th><th>What it is</th><th>Why it works for recruiters</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Custom Cursor</strong></td>
+        <td>Replaces default OS cursor with a dot + lagging ring. Ring scales on hover, shrinks on click.</td>
+        <td>Signals premium craft before reading a word. Memorable differentiator.</td>
+      </tr>
+      <tr>
+        <td><strong>Preloader</strong></td>
+        <td>Full-screen intro with logo, counter (000%→100%), fill bar, then slides up to reveal site.</td>
+        <td>Sets expectation of quality. Gives fonts/assets time to load so first render is perfect.</td>
+      </tr>
+      <tr>
+        <td><strong>Scroll Progress Bar</strong></td>
+        <td>2px accent-colored line at top of viewport that fills as you scroll.</td>
+        <td>Encourages recruiters to keep scrolling — they can see there's more content below.</td>
+      </tr>
+      <tr>
+        <td><strong>Open to Work Badge</strong></td>
+        <td>Fixed bottom-right badge with pulse dot. Click expands card showing role types + CTA.</td>
+        <td>Always visible, never missed. Recruiter can click straight to Contact without scrolling.</td>
+      </tr>
+      <tr>
+        <td><strong>Typewriter Badge</strong></td>
+        <td>Hero badge cycles through 5 role titles with typing + deleting animation.</td>
+        <td>Shows range (MERN, React, AI, Node) without cluttering the hero section.</td>
+      </tr>
+      <tr>
+        <td><strong>One-Click Copy Email</strong></td>
+        <td>Copy icon next to email in Contact. Clicking copies to clipboard, shows ✓ for 2s.</td>
+        <td>Removes friction. Recruiter doesn't need to select + copy manually.</td>
+      </tr>
+      <tr>
+        <td><strong>OG Meta Tags</strong></td>
+        <td>Open Graph + Twitter Card meta tags in index.html with title, description, image.</td>
+        <td>When recruiter shares your URL on LinkedIn/Slack, it renders a professional preview card instead of a raw URL.</td>
+      </tr>
+      <tr>
+        <td><strong>Resume Download</strong></td>
+        <td>Direct PDF download link in Hero CTA.</td>
+        <td>Zero friction resume access. No extra navigation needed.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-label" style="margin-top:28px;">Section 06</div>
+  <div class="section-title" style="font-size:18pt;">Performance & Build</div>
+  <div class="section-divider"></div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-val" style="color:#0CFCA8;">~27KB</div>
+      <div class="stat-lbl">CSS bundle (gzipped: 5.7KB)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val" style="color:#38BDF8;">~458KB</div>
+      <div class="stat-lbl">JS bundle (gzipped: 152KB)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val" style="color:#A788FA;">0</div>
+      <div class="stat-lbl">Build errors</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val" style="color:#FFB347;">&lt;5s</div>
+      <div class="stat-lbl">Production build time</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-accent-bar" style="background:#0CFCA8;"></div>
+    <div style="padding-left:12px;">
+      <div class="card-name">Performance Decisions Made</div>
+      <ul style="margin-top:10px;padding-left:18px;font-size:10pt;color:#444;line-height:2;">
+        <li><strong>Canvas for particles</strong> — not DOM elements. Zero reflow cost.</li>
+        <li><strong>prefers-reduced-motion</strong> respected — canvas animation disabled for accessibility.</li>
+        <li><strong>pointer-events: none</strong> on all decorative overlays — never blocks clicks.</li>
+        <li><strong>GSAP context cleanup</strong> on every component unmount — no memory leaks.</li>
+        <li><strong>IntersectionObserver</strong> for section detection — much cheaper than scroll event listeners.</li>
+        <li><strong>Lenis smoothTouch: false</strong> — native touch scroll on mobile (better UX than lerp on touchscreen).</li>
+        <li><strong>Google Fonts preconnect</strong> — DNS resolved before CSS is even parsed.</li>
+        <li><strong>Passive scroll listeners</strong> — <code>{ passive: true }</code> on all scroll handlers for jank-free scrolling.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 6 — INTERVIEW Q&A
+════════════════════════════════════════════════════════════ -->
+<div class="page break">
+
+  <div class="section-label">Section 07</div>
+  <div class="section-title">Interview Q&amp;A</div>
+  <p class="section-desc">Ready-made answers to the most common technical questions a recruiter or interviewer will ask.</p>
+  <div class="section-divider"></div>
+
+  <div class="qa-box">
+    <div class="qa-q">Why did you use both GSAP and Framer Motion? Isn't that redundant?</div>
+    <div class="qa-a">They serve completely different purposes. GSAP operates outside React's render cycle, making it ideal for performance-critical, timeline-based animations like the Hero load sequence or scroll-driven effects. Framer Motion is React-aware and handles component lifecycle animations — like animating a component out of the DOM (AnimatePresence) or hover/tap states that respond to React state. Using GSAP for everything would require manual DOM refs everywhere; using Framer Motion for everything would sacrifice performance on complex timelines.</div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">What is Lenis and why not just use CSS scroll-behavior: smooth?</div>
+    <div class="qa-a">CSS scroll-behavior: smooth only applies to anchor link navigation — it doesn't affect regular wheel/trackpad scrolling. Lenis intercepts all scroll input and applies a lerp (linear interpolation) algorithm that creates a physically weighted, momentum-like scroll feel. It also syncs with GSAP's ticker so ScrollTrigger animations run against the smooth scroll position rather than the native choppy one. The result is the premium feel seen on high-end agency websites.</div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">How did you prevent memory leaks with GSAP animations in React?</div>
+    <div class="qa-a">By using GSAP's context API — gsap.context(fn, containerRef) — inside every useEffect. The context scopes all animations to the component's DOM. In the useEffect cleanup I call ctx.revert(), which kills all animations created in that context and restores original CSS values. Without this, killed components would still have running tweens referencing detached DOM nodes, causing memory leaks and console errors.</div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">Why use Canvas for the particle background instead of CSS animations or SVG?</div>
+    <div class="qa-a">CSS animations can't draw dynamic lines between moving elements. SVG would require creating and updating DOM nodes for every particle and line on every frame — at 55 particles with potentially hundreds of connecting lines, that's thousands of DOM mutations per second, causing severe layout thrashing. Canvas batches all drawing in a single bitmap element with zero DOM overhead. The entire animation lives in one requestAnimationFrame loop.</div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">What is the data-driven component pattern you used?</div>
+    <div class="qa-a">All portfolio content — projects, experience, skills — lives in plain JavaScript files under /src/data/ as exported arrays of objects. Components import this data and render it. The component only knows the shape of the data (what fields to expect), not the content. This means updating the portfolio — adding a new project, changing a job description — requires editing only one data file, not touching any component. It's the same principle as a headless CMS.</div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">How does the custom cursor work technically?</div>
+    <div class="qa-a">Two absolutely positioned divs: a dot that uses transform to snap directly to mouse coordinates (no lag), and a ring that uses requestAnimationFrame with lerp (rx += (mx - rx) * 0.12) to lag behind. The ring scales up on hoverable elements via mouseover/mouseout events that check if the target matches 'a, button, input, etc.' It's hidden on touch devices via ontouchstart and pointer: coarse media query checks. mixBlendMode: difference on the dot makes it invert colors under light backgrounds.</div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">Why Vite over Create React App or Next.js?</div>
+    <div class="qa-a">Create React App uses Webpack which is slow to start and slow to HMR. Vite uses native ES Modules — the dev server starts in under 300ms and HMR is near-instant. Next.js adds SSR, file-based routing, and server components — none of which a static portfolio needs. Next.js would be the right choice if the portfolio had a blog with dynamic routes, server-side data fetching, or needed SEO at scale. For this use case, Vite gives the same developer experience with less complexity.</div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">What are Open Graph tags and why did you add them?</div>
+    <div class="qa-a">Open Graph is a protocol (originally by Facebook) that controls how URLs appear when shared on social platforms — LinkedIn, Slack, WhatsApp, Twitter/X. Without OG tags, sharing your URL shows just the raw URL or a generic snippet. With og:title, og:description, and og:image, it renders a professional preview card with your name, description, and a custom image. For a portfolio, this matters because recruiters share URLs with hiring managers — the first impression of your site often happens in a Slack message, not a browser.</div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PAGE 7 — DEPENDENCIES MAP
+════════════════════════════════════════════════════════════ -->
+<div class="page break">
+
+  <div class="section-label">Section 08</div>
+  <div class="section-title">Full Dependency Map</div>
+  <p class="section-desc">Every package installed, its version, purpose, and whether it ships to production.</p>
+  <div class="section-divider"></div>
+
+  <div class="section-label" style="color:#333;">Production Dependencies</div>
+  <table style="margin-top:8px;">
+    <thead>
+      <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>react</code></td><td>^18.3.1</td><td>Core UI library — component model, hooks, virtual DOM</td></tr>
+      <tr><td><code>react-dom</code></td><td>^18.3.1</td><td>React renderer for the browser DOM</td></tr>
+      <tr><td><code>gsap</code></td><td>^3.12.5</td><td>Animation engine — timelines, ScrollTrigger, all scroll-based animations</td></tr>
+      <tr><td><code>framer-motion</code></td><td>^11.11.11</td><td>React animation — AnimatePresence, whileHover, layout animations</td></tr>
+      <tr><td><code>@studio-freight/lenis</code></td><td>^1.0.42</td><td>Smooth scroll engine — replaces native browser scroll</td></tr>
+      <tr><td><code>lucide-react</code></td><td>^0.447.0</td><td>Icon library — SVG icons as React components (Github, Mail, etc.)</td></tr>
+      <tr><td><code>@emailjs/browser</code></td><td>^4.4.1</td><td>Contact form email sending without a backend server</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-label" style="color:#333;margin-top:20px;">Dev Dependencies</div>
+  <table style="margin-top:8px;">
+    <thead>
+      <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>vite</code></td><td>^5.4.9</td><td>Build tool — dev server, HMR, production bundling via Rollup</td></tr>
+      <tr><td><code>@vitejs/plugin-react</code></td><td>^4.3.1</td><td>Vite plugin — enables JSX transform and React Fast Refresh</td></tr>
+      <tr><td><code>tailwindcss</code></td><td>^3.4.14</td><td>Utility-first CSS framework</td></tr>
+      <tr><td><code>autoprefixer</code></td><td>^10.4.20</td><td>PostCSS plugin — adds vendor prefixes (-webkit-, -moz-) automatically</td></tr>
+      <tr><td><code>postcss</code></td><td>^8.4.47</td><td>CSS transformation tool — required by Tailwind</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:24px;">
+    <strong>Total packages installed:</strong> 183 (including transitive dependencies) · <strong>Direct dependencies:</strong> 12 · <strong>Zero vulnerabilities</strong> in direct dependencies · Build output: 458KB JS + 27KB CSS (before gzip compression).
+  </div>
+
+  <div class="section-label" style="margin-top:28px;">Section 09</div>
+  <div class="section-title" style="font-size:18pt;">File Structure Explained</div>
+  <div class="section-divider"></div>
+
+  <table>
+    <thead>
+      <tr><th>Path</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>src/components/</code></td><td>One file per page section — each self-contained with its own animation logic</td></tr>
+      <tr><td><code>src/data/</code></td><td>Pure data files — no JSX, no logic. Single source of truth for all content</td></tr>
+      <tr><td><code>src/hooks/</code></td><td>Custom React hooks — <code>useGsap.js</code>, <code>useSmoothScroll.js</code>, <code>useTypewriter.js</code> (cycling role titles in Hero badge)</td></tr>
+      <tr><td><code>src/utils/animations.js</code></td><td>Shared GSAP animation helper functions used across multiple components</td></tr>
+      <tr><td><code>src/index.css</code></td><td>Tailwind directives + global resets + custom CSS utilities</td></tr>
+      <tr><td><code>tailwind.config.js</code></td><td>Custom design tokens — all colors, fonts, animations defined here</td></tr>
+      <tr><td><code>vite.config.js</code></td><td>Vite build config — React plugin setup</td></tr>
+      <tr><td><code>public/resume.pdf</code></td><td>Ayush's resume — served as static file, linked from Hero CTA (direct PDF download)</td></tr>
+      <tr><td><code>public/photo.jpg</code></td><td>Profile photo — served as static file, referenced in Hero as <code>/photo.jpg</code> with CSS retouching filters (<code>brightness(1.08) contrast(1.12) saturate(1.15)</code>)</td></tr>
+      <tr><td><code>index.html</code></td><td>HTML entry point — OG meta tags, font preloads, root div</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BACK COVER
+════════════════════════════════════════════════════════════ -->
+<div class="cover" style="page-break-before:always; justify-content:space-between;">
+  <div class="cover-inner">
+    <div class="cover-badge">
+      <div class="cover-badge-dot"></div>
+      End of Document
+    </div>
+    <h1 style="font-size:32pt;">Let's build<br /><span>something great.</span></h1>
+    <div class="cover-divider"></div>
+    <p class="cover-desc">
+      This document covers every technical decision behind the portfolio. If you have follow-up questions or want to see the code, reach out directly.
+    </p>
+  </div>
+
+  <div class="cover-meta" style="flex-direction:column;gap:12px;">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Email</div>
+      <div class="cover-meta-value">ayushshivoy06@gmail.com</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">GitHub</div>
+      <div class="cover-meta-value">github.com/dev-ayush0106</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">LinkedIn</div>
+      <div class="cover-meta-value">linkedin.com/in/ayush-kumar-071332312</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Location</div>
+      <div class="cover-meta-value">Noida, India · Open to Remote</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
