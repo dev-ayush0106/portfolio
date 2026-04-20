@@ -113,13 +113,14 @@ export default function ProjectModal({ project, onClose }) {
     return () => window.removeEventListener('keydown', handler)
   }, [onClose])
 
-  // Lock body scroll + pause Lenis so wheel events reach the modal scroller
+  // Lock body scroll + pause Lenis so wheel/touch events reach the modal scroller
   useEffect(() => {
     document.body.style.overflow = 'hidden'
-    // Pause Lenis so it doesn't intercept wheel inside the modal
+    document.body.style.touchAction = 'none'
     if (window.__lenis) window.__lenis.stop()
     return () => {
       document.body.style.overflow = ''
+      document.body.style.touchAction = ''
       if (window.__lenis) window.__lenis.start()
     }
   }, [])
@@ -238,8 +239,15 @@ export default function ProjectModal({ project, onClose }) {
         {/* ── Tab content ───────────────────────────────────────────── */}
         <div
           className="flex-1 p-4 md:p-6"
-          style={{ overflowY: 'scroll', overscrollBehavior: 'contain' }}
+          style={{
+            overflowY: 'scroll',
+            overscrollBehavior: 'contain',
+            WebkitOverflowScrolling: 'touch',
+            touchAction: 'pan-y',
+          }}
           onWheel={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
         >
           <AnimatePresence mode="wait">
             <motion.div

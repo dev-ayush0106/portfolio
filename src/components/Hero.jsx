@@ -115,7 +115,7 @@ export default function Hero() {
           {/* CTAs */}
           <div ref={ctaRef} className="flex items-center justify-center lg:justify-start gap-4 flex-wrap">
             <a
-              href="/resume.pdf"
+              href={`${import.meta.env.BASE_URL}resume.pdf`}
               download="Ayush_Kumar_Resume.pdf"
               className="flex items-center gap-2 px-7 py-3.5 bg-accent text-bg-primary font-bold rounded-lg hover:bg-accent-hover transition-colors duration-200 text-base shadow-lg shadow-accent/20"
             >
@@ -170,63 +170,28 @@ export default function Hero() {
           transition={{ delay: 1.4, duration: 0.8, ease: 'easeOut' }}
           className="flex-shrink-0 flex items-center justify-center"
         >
-          <div className="relative">
-            {/* Spinning gradient ring */}
-            <div
-              className="absolute -inset-[3px] rounded-full animate-spin-slow"
+          <div className="relative w-64 md:w-80 lg:w-96">
+
+            {/* Ambient glow beneath the figure */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-40 bg-accent/10 blur-3xl rounded-full pointer-events-none" />
+
+            {/* Portrait image */}
+            <img
+              src={`${import.meta.env.BASE_URL}photo.png`}
+              alt="Ayush Kumar"
+              className="relative w-full h-auto object-contain"
               style={{
-                background: 'conic-gradient(from 0deg, #0CFCA8 0%, #38BDF8 35%, #A788FA 65%, #0CFCA8 100%)',
-                borderRadius: '50%',
+                filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.7)) drop-shadow(0 0 40px rgba(12,252,168,0.10))',
+              }}
+              onError={(e) => {
+                e.target.style.display = 'none'
+                e.target.nextElementSibling.style.display = 'flex'
               }}
             />
-            {/* Inner glow */}
-            <div className="absolute inset-3 rounded-full bg-accent/10 blur-2xl" />
-
-            {/* Photo */}
-            <div className="relative w-52 h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full border-2 border-bg-primary overflow-hidden bg-bg-surface">
-              <img
-                src="/photo.jpg"
-                alt="Ayush Kumar"
-                className="w-full h-full object-cover object-top"
-                style={{ filter: 'brightness(1.08) contrast(1.12) saturate(1.15)' }}
-                onError={(e) => {
-                  e.target.style.display = 'none'
-                  e.target.nextElementSibling.style.display = 'flex'
-                }}
-              />
-              {/* Fallback — shows if photo.jpg not found */}
-              <div className="absolute inset-0 hidden items-center justify-center bg-bg-surface">
-                <span className="text-6xl font-black text-accent font-mono select-none">AK</span>
-              </div>
+            {/* Fallback */}
+            <div className="hidden items-center justify-center h-72 bg-bg-surface rounded-2xl border border-border-subtle">
+              <span className="text-6xl font-black text-accent font-mono select-none">AK</span>
             </div>
-
-            {/* Online status dot */}
-            <div className="absolute bottom-4 right-4 z-10">
-              <span className="relative flex h-5 w-5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-50" />
-                <span className="relative inline-flex rounded-full h-5 w-5 bg-accent border-2 border-bg-primary" />
-              </span>
-            </div>
-
-            {/* Floating experience chip */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -left-6 top-1/4 bg-bg-card border border-accent/30 rounded-xl px-3 py-2 shadow-xl shadow-black/30"
-            >
-              <div className="text-accent font-black font-mono text-sm">3+</div>
-              <div className="text-text-muted text-[10px] font-mono">Yrs Exp</div>
-            </motion.div>
-
-            {/* Floating projects chip */}
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-              className="absolute -right-6 bottom-1/4 bg-bg-card border border-sky/30 rounded-xl px-3 py-2 shadow-xl shadow-black/30"
-            >
-              <div className="text-sky font-black font-mono text-sm">15+</div>
-              <div className="text-text-muted text-[10px] font-mono">Projects</div>
-            </motion.div>
           </div>
         </motion.div>
 

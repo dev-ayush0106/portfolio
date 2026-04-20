@@ -24,8 +24,10 @@ export default function App() {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    // hide default cursor globally — CustomCursor replaces it
-    document.body.style.cursor = 'none'
+    // Only hide native cursor on pointer devices — keep it on touch/mobile
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.body.style.cursor = 'none'
+    }
     return () => { document.body.style.cursor = '' }
   }, [])
 

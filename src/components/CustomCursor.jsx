@@ -5,6 +5,9 @@ export default function CustomCursor() {
   const ringRef  = useRef(null)
 
   useEffect(() => {
+    // Hide on touch/mobile devices — (pointer: fine) means mouse/trackpad
+    if (!window.matchMedia('(pointer: fine)').matches) return
+
     const dot  = dotRef.current
     const ring = ringRef.current
     if (!dot || !ring) return

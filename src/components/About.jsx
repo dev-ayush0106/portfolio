@@ -155,8 +155,8 @@ export default function About() {
 
             <div className="pt-2 flex gap-4 flex-wrap">
               <a
-                href="/resume.pdf"
-                download
+                href={`${import.meta.env.BASE_URL}resume.pdf`}
+                download="Ayush_Kumar_Resume.pdf"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-bg-primary text-sm font-bold rounded-lg hover:bg-accent-hover transition-colors"
               >
                 Download Resume
